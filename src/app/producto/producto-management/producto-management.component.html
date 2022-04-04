@@ -1,0 +1,110 @@
+<form #form="ngForm">
+    <div class="row">
+        <h2>Producto Management</h2>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="txtSKU">SKU</label>
+                <input id="txtSKU" placeholder="SKU" name="sku" type="text" class="form-control" [(ngModel)]="objProducto.sku" 
+                #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
+                <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
+                    Debe ingresar codigo SKU
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+            <label for="txtNombre">Nombre</label>
+            <input id="txtNombre" placeholder="Nombre" type="text" name="nombre" class="form-control" [(ngModel)]="objProducto.nombre" 
+            #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
+            <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
+                Debe ingresar nombre del producto
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <label for="txtDescripcion">Descripcion</label>
+            <textarea id="txtDescripcion" class="form-control" name="descripcion" rows="3" [(ngModel)]="objProducto.descripcion" 
+            #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
+            </textarea>
+            <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
+                Debe ingresar descripcion del producto
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <label for="selectActivo" >Marca</label>
+            <select id="selectActivo" name="activo" class="form-control" [(ngModel)]="objProducto.idMarca" 
+            #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
+                <option *ngFor="let marca of lstMarca | async" [value]="marca.idMarca"> {{marca.nombre}} </option>
+            </select>
+            <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
+                Debe seleccionar una unidad de medida
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <label>Cantidad unitaria</label>
+            <input placeholder="Cant.Unitaria" type="number" min="1" name="cantidadUnitaria" class="form-control" [(ngModel)]="objProducto.cantidadUnitaria" 
+            #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
+            <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
+                Debe ingresar cantidad unitaria mayor a 1
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <label for="selectActivo" >Unidad de medida</label>
+            <select id="selectActivo" name="activo" class="form-control" [(ngModel)]="objProducto.idUnidadMedida" 
+            #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
+                <option *ngFor="let um of lstUnidadMedida | async" [value]="um.idUnidadMedida"> {{um.nombre}} </option>
+            </select>
+            <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
+                Debe seleccionar una unidad de medida
+            </div>
+        </div>
+      </div>    
+  </div>
+  <div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <label for="selectActivo" >Activo</label>
+            <select id="selectActivo" name="activo" class="form-control" [(ngModel)]="objProducto.activo" 
+            #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
+                <option [value]="true">Activo</option>
+                <option [value]="false">Inactivo</option>
+            </select>
+            <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
+                Debe seleccionar una opcion
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+      <!-- <div class="offset-1"></div> -->
+      <div class="col-1">
+          <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
+      </div>
+      <div class="col-1">
+        <button type="button" routerLink="/producto" class="btn btn-primary">Cancel</button>
+    </div>
+  </div>
+</form>
+
+{{ objProducto | json }}
+{{ lstUnidadMedida | json }}
+{{ idProducto}}

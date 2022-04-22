@@ -45,10 +45,10 @@
             <label for="selectActivo" >Marca</label>
             <select id="selectActivo" name="activo" class="form-control" [(ngModel)]="objProducto.idMarca" 
             #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
-                <option *ngFor="let marca of lstMarca | async" [value]="marca.idMarca"> {{marca.nombre}} </option>
+                <option *ngFor="let marca of lstMarca | async" [value]="marca.idMarca" [selected]="marca.idMarca == objProducto.idMarca"> {{marca.nombre}} </option>
             </select>
             <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
-                Debe seleccionar una unidad de medida
+                Debe seleccionar una marca
             </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
             <label for="selectActivo" >Unidad de medida</label>
             <select id="selectActivo" name="activo" class="form-control" [(ngModel)]="objProducto.idUnidadMedida" 
             #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
-                <option *ngFor="let um of lstUnidadMedida | async" [value]="um.idUnidadMedida"> {{um.nombre}} </option>
+                <option *ngFor="let um of lstUnidadMedida | async" [value]="um.idUnidadMedida" [selected]="um.idUnidadMedida == objProducto.idUnidadMedida"> {{um.nombre}} </option>
             </select>
             <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
                 Debe seleccionar una unidad de medida
@@ -85,8 +85,8 @@
             <label for="selectActivo" >Activo</label>
             <select id="selectActivo" name="activo" class="form-control" [(ngModel)]="objProducto.activo" 
             #nameField="ngModel" required [class.field-error]="form.submitted && nameField.invalid">
-                <option [value]="true">Activo</option>
-                <option [value]="false">Inactivo</option>
+                <option [value]="true" [selected]="objProducto.activo ==  true">Activo</option>
+                <option [value]="false" [selected]="objProducto.activo ==  false">Inactivo</option>
             </select>
             <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
                 Debe seleccionar una opcion

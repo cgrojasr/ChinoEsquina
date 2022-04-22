@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { pagination } from 'src/app/model/pagination';
 
 //Agregado
 import { ProductoService } from '../../core/producto/producto.service';
@@ -16,10 +17,17 @@ export class ProductoHomeComponent implements OnInit {
   ) { }
 
   lstProductos: producto[];
+  page: pagination;
 
   ngOnInit(): void {
-    this.productoService.getAll().subscribe(
-      result => this.lstProductos = result
+    // this.productoService.getAll().subscribe(
+    //   result => this.lstProductos = result
+    // );
+
+    this.productoService.getPagination(0,3).subscribe(
+      result => this.page = result
     );
+    console.log(this.page);
+    //this.lstProductos = this.page.content;
   };
 }

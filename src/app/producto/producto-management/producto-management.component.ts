@@ -5,7 +5,7 @@ import { producto } from 'src/app/model/producto';
 import { UnidadMedidaService } from 'src/app/core/unidadmedida/unidad-medida.service';
 import { Observable } from 'rxjs';
 import { ProductoService } from 'src/app/core/producto/producto.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { unidadMedida } from 'src/app/model/unidad-medida';
 import { marca } from 'src/app/model/marca';
 import { MarcaService } from 'src/app/core/marca/marca.service';
@@ -38,7 +38,8 @@ export class ProductoManagementComponent implements OnInit {
     private route: ActivatedRoute,
     private unidadMedidaService: UnidadMedidaService,
     private productoService: ProductoService,
-    private marcaService: MarcaService
+    private marcaService: MarcaService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -72,5 +73,7 @@ export class ProductoManagementComponent implements OnInit {
         result => this.objProducto = result
         );
     }
+
+    this.router.navigate(['/producto'])
   }
 }

@@ -8,8 +8,6 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule} from '@angular/common/http';
 import { ProductoService } from './core/producto/producto.service';
-import { ProductoHomeComponent } from './producto/producto-home/producto-home.component';
-import { ProductoManagementComponent } from './producto/producto-management/producto-management.component';
 import { MenubarComponent } from './shared/menubar/menubar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
@@ -17,8 +15,6 @@ import { FooterComponent } from './shared/footer/footer.component';
   declarations: [
     AppComponent,
     routingComponents,
-    ProductoHomeComponent,
-    ProductoManagementComponent,
     MenubarComponent,
     FooterComponent
   ],

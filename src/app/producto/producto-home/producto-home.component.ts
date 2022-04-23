@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { pagination } from 'src/app/model/pagination';
-
+import { ActivatedRoute } from '@angular/router';
 //Agregado
 import { ProductoService } from '../../core/producto/producto.service';
 import { producto } from '../../model/producto';
@@ -13,21 +12,36 @@ import { producto } from '../../model/producto';
 export class ProductoHomeComponent implements OnInit {
 
   constructor(
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private route: ActivatedRoute,
   ) { }
 
   lstProductos: producto[];
-  page: pagination;
+  currentPage: number = 0;
+  totalPages: number;
 
   ngOnInit(): void {
     // this.productoService.getAll().subscribe(
     //   result => this.lstProductos = result
     // );
+    this.route.params.subscribe(params => {
+      this.currentPage = params['page'];
+    });
 
-    this.productoService.getPagination(0,3).subscribe(
-      result => this.page = result
-    );
-    console.log(this.page);
-    //this.lstProductos = this.page.content;
+    if(this.currentPage != null){ 
+      this.getAll(this.currentPage);
+    } else { 
+      this.getAll(0);
+    }
   };
+
+  getAll(page: number): void { 
+    this.productoService.getPagination(page,3).subscribe(
+      result => { 
+        this.lstProductos = result.content;
+        this.currentPage = result.number;
+        this.totalPages = result.totalPages;
+      }
+    );
+  }
 }

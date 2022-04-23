@@ -5,8 +5,10 @@ import { ProductoManagementComponent } from './producto/producto-management/prod
 
 const routes: Routes = [
   { path: 'producto', component: ProductoHomeComponent},
+  { path: 'producto/:page', component: ProductoHomeComponent},
   { path: 'productomanagement', component: ProductoManagementComponent},
-  { path: 'productomanagement/:id', component: ProductoManagementComponent}
+  { path: 'productomanagement/:id', component: ProductoManagementComponent},
+  { path: 'management', loadChildren: ()=> import('./module/management/management.module').then(m=>m.ManagementModule)}
 ];
 
 @NgModule({

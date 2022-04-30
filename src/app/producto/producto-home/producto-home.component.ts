@@ -36,7 +36,7 @@ export class ProductoHomeComponent implements OnInit {
   };
 
   getAll(page: number): void { 
-    this.productoService.getPagination(page,3).subscribe(
+    this.productoService.getPagination(page,5).subscribe(
       result => { 
         this.lstProductos = result.content;
         this.currentPage = result.number;
